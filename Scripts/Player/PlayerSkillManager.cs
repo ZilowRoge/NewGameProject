@@ -26,6 +26,12 @@ public class PlayerSkillManager : MonoBehaviour {
 			switch(spell.GetComponent<Spells.Spell>().spell_type)
 			{
 				case Spells.SpellType.PROJECTAIL:
+					if (spell_cooldown_time <= spell_cooldown_timer) {
+						spell.GetComponent<Spells.SpellProjectail>().set_projectail_forward(this.transform.forward);
+						spell_cooldown_timer = 0;
+					} else {
+						Destroy(spell);
+					}
 				break;
 				case Spells.SpellType.AURA:
 					if(!shield_casted) {
@@ -51,6 +57,7 @@ public class PlayerSkillManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(spell_cooldown_time > spell_cooldown_timer) {
+			Debug.Log(spell_cooldown_timer);
 			spell_cooldown_timer += Time.deltaTime;
 		}
 	}
