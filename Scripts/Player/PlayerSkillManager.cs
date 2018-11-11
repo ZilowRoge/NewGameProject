@@ -7,7 +7,7 @@ public class PlayerSkillManager : MonoBehaviour {
 
 	
 	public GameObject spell_cast_point;
-	public List<GameObject> spells_hotkeys = new List<GameObject>();
+	public List<GameObject> spells = new List<GameObject>();
 
 	public List<GameObject> shields = new List<GameObject>();
 	public float spell_cooldown_time = 1.0f;
@@ -21,7 +21,8 @@ public class PlayerSkillManager : MonoBehaviour {
 
 	public void cast_spell(int spell_id)
 	{
-		GameObject projectail;
+
+		/*GameObject projectail;
 		if(spell_cooldown_time < spell_cooldown_timer) {
 			if (spell_cast_point != null) {
 				if (spell_id < spells_hotkeys.Count || spell_id < 0) {
@@ -34,13 +35,29 @@ public class PlayerSkillManager : MonoBehaviour {
 			} else {
 				Debug.Log("PlayerSkillManager: Position not initialized");
 			}
+		}*/
+		if (spell_id < spells.Count || spell_id < 0) {
+			GameObject spell = Instantiate(spells[spell_id], spell_cast_point.transform.position, Quaternion.identity);
+			switch(spell.GetComponent<Spells.Spell>().spell_type)
+			{
+				case Spells.SpellType.PROJECTAIL:
+				break;
+				case Spells.SpellType.AURA:
+					if(!shield_casted) {
+						spell.transform.parent = this.transform;
+						spell.transform.localPosition = Vector3.zero;
+						shield_casted = true;
+					} else {
+						Destroy(spell);
+					}
+				break;
+			}
+		} else {
+			Debug.Log("PlayerSkillManager: Wrong spell_id: " + spell_id);
 		}
+
 	}
 
-	public void cast_shield() {
-		shield_casted = true;
-		//Instantiate()
-	}
 	// Use this for initialization
 	void Start () {
 		
@@ -50,9 +67,6 @@ public class PlayerSkillManager : MonoBehaviour {
 	void Update () {
 		if(spell_cooldown_time > spell_cooldown_timer) {
 			spell_cooldown_timer += Time.deltaTime;
-		}
-		if (shield_casted) {
-
 		}
 	}
 }
