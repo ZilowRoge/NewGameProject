@@ -7,13 +7,15 @@ public class MobController : MonoBehaviour {
 		EPATROL,
 		EIDLE,
 		ECHASE,
-		EATTACK
 	}
 	public MobBehaviorState state = MobBehaviorState.EPATROL;
 
 	public MobPatrol patrol_script;
 	public MobIdle idle_script;
 	public MobChase chase_script;
+	public Animator animator;
+
+	public GameObject attack_target;
 
 	public FieldOfView mob_view;
 	// Use this for initialization
@@ -22,6 +24,8 @@ public class MobController : MonoBehaviour {
 		idle_script = GetComponent<MobIdle>();
 		chase_script = GetComponent<MobChase>();
 		mob_view = GetComponent<FieldOfView>();
+		animator = GetComponent<Animator>();
+		animator.speed = 0.75f;/*attack speed */
 		StartCoroutine ("wake_mob", .2f);
 	}
 
@@ -33,6 +37,7 @@ public class MobController : MonoBehaviour {
 			idle_script.set_destination(mob_view.target.position);
 			chase_script.set_destination(mob_view.target.position);
 		}
+		try_attack();
 	}
 
 	IEnumerator wake_mob(float delay)
@@ -54,9 +59,6 @@ public class MobController : MonoBehaviour {
 				break;
 			case MobBehaviorState.ECHASE:
 				chase();
-				break;
-			case MobBehaviorState.EATTACK:
-				attack();
 				break;
 			case MobBehaviorState.EIDLE:
 				idle();
@@ -107,15 +109,34 @@ public class MobController : MonoBehaviour {
 		chase_script.execute_state();
 	}
 	
-	void attack()
+	void try_attack()
 	{
-
+		targets_in_attack_range();
+		if (attack_target != null)
+		{
+			animator.SetBool("Attack", true);
+		} else {
+			animator.SetBool("Attack", false);
+		}
 	}
 
 	private bool player_spotted()
 	{
 		return mob_view.target != null;
 	}
+	private void targets_in_attack_range()
+	{
+		Collider[] targets = Physics.OverlapSphere(transform.position, 1.5f/*attack range*/, mob_view.target_mask);
+		foreach(Collider col in targets)
+		{
+			if (col.gameObject.tag == "Player") {
+				attack_target = col.gameObject;
+				break;
+			}
+		}
+	}
+
+
 }
 
 } //namespace Mobs

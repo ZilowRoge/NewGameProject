@@ -30,7 +30,7 @@ public class MobPatrol : MobBehavior {
 
 	public bool destination_reached(string str = "MobPatrol")
 	{
-		Debug.Log(str + " destination reached: " + near_point(destination));
+	//	Debug.Log(str + " destination reached: " + near_point(destination));
 		return near_point(destination);
 	}
 

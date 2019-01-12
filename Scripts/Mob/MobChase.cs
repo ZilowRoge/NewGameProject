@@ -7,26 +7,13 @@ public class MobChase : MobBehavior {
 	// Use this for initialization
 	public FieldOfView mob_view;
 	public GameObject attack_target;
-	public Animator animator;
 	void Start () {
 		mob_view = GetComponent<FieldOfView>();
-		animator = GetComponent<Animator>();
-		animator.speed = 0.75f;
 		if (movment_script == null) {
 			movment_script = GetComponent<MobMovment>();
 		}
 	}
 
-	void Update()
-	{
-		targets_in_attack_range();
-		if (attack_target != null)
-		{
-			animator.SetBool("Attack", true);
-		} else {
-			animator.SetBool("Attack", false);
-		}
-	}
 	public bool reached_target()
 	{
 		return near_point(destination);
@@ -41,20 +28,9 @@ public class MobChase : MobBehavior {
 
 	public bool destination_reached(string str = "MobChase")
 	{
-		Debug.Log(str + "destination reached: " + near_point(destination));
+	//	Debug.Log(str + "destination reached: " + near_point(destination));
 		return near_point(destination);
 	}
 
-	public void targets_in_attack_range()
-	{
-		Collider[] targets = Physics.OverlapSphere(transform.position, location_offset, mob_view.target_mask);
-		foreach(Collider col in targets)
-		{
-			if (col.gameObject.tag == "Player") {
-				attack_target = col.gameObject;
-				break;
-			}
-		}
-	}
 }
 } //namespace Mobs
