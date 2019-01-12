@@ -69,7 +69,7 @@ public class MobController : MonoBehaviour {
 	}
 	void change_state(MobBehaviorState state)
 	{
-		Debug.Log("Change state to: " + state.ToString());
+		//Debug.Log("Change state to: " + state.ToString());
 		this.state = state;
 	}
 	void patrol ()
@@ -78,7 +78,7 @@ public class MobController : MonoBehaviour {
 			change_state(MobBehaviorState.ECHASE);
 		}
 		if (patrol_script.destination_reached("MobController") && patrol_script.destination_set) {
-			Debug.Log("Set Idle state");
+			//Debug.Log("Set Idle state");
 			change_state(MobBehaviorState.EIDLE);
 			patrol_script.destination_set = false;
 		} else {
@@ -92,11 +92,11 @@ public class MobController : MonoBehaviour {
 			change_state(MobBehaviorState.ECHASE);
 		}
 		if (idle_script.should_end_idle && idle_script.timer_less_than_zero()) {
-			Debug.Log("Should end idle");
+			//Debug.Log("Should end idle");
 			idle_script.should_end_idle = false;
 			change_state(MobBehaviorState.EPATROL);
 		} else {
-			Debug.Log("Execute state IDLE");
+			//Debug.Log("Execute state IDLE");
 			idle_script.execute_state();
 		}
 	}
@@ -126,6 +126,7 @@ public class MobController : MonoBehaviour {
 	}
 	private void targets_in_attack_range()
 	{
+		attack_target = null;
 		Collider[] targets = Physics.OverlapSphere(transform.position, 1.5f/*attack range*/, mob_view.target_mask);
 		foreach(Collider col in targets)
 		{

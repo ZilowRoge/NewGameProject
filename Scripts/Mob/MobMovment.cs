@@ -92,7 +92,7 @@ public class MobMovment : MonoBehaviour {
 	{
 		direction = destination - new Vector3(transform.position.x, transform.position.y, transform.position.z);
 		angle = Vector3.SignedAngle(new Vector3(transform.forward.x, transform.position.y, transform.forward.z), direction, Vector3.up);
-		Debug.Log("Angle: " + angle);
+		//Debug.Log("Angle: " + angle);
 	}
 }
 
