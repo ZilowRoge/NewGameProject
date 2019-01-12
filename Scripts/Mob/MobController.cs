@@ -101,6 +101,9 @@ public class MobController : MonoBehaviour {
 
 	void chase()
 	{
+		if (chase_script.destination_reached()) {
+			change_state(MobBehaviorState.EPATROL);
+		}
 		chase_script.execute_state();
 	}
 	
