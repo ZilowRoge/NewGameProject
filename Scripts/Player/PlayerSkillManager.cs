@@ -57,7 +57,7 @@ public class PlayerSkillManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(spell_cooldown_time > spell_cooldown_timer) {
-			Debug.Log(spell_cooldown_timer);
+			//Debug.Log(spell_cooldown_timer);
 			spell_cooldown_timer += Time.deltaTime;
 		}
 	}

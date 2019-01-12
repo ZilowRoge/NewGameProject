@@ -51,7 +51,7 @@ public class InputManager : MonoBehaviour {
 	private void player_skill_handling()
 	{
 		if (Input.GetAxis("Attack1") != 0) {
-			skill_manager.cast_spell(current_selected_spell);
+		//	skill_manager.cast_spell(current_selected_spell);
 		}
 	}
 

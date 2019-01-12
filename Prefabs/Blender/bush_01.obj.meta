@@ -1,56 +1,18 @@
 fileFormatVersion: 2
-guid: 12d7cd91fd5e15544b44a55b32e9136b
-timeCreated: 1543261668
+guid: 20d2f58377a011f4f9bfedb4a06aed10
+timeCreated: 1544480184
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Cube
-    100002: Cube_001
-    100004: Cube_002
-    100006: Cube_003
-    100008: Cube_004
-    100010: Cube_005
-    100012: //RootNode
-    100014: GateBack
-    100016: GateFront
-    400000: Cube
-    400002: Cube_001
-    400004: Cube_002
-    400006: Cube_003
-    400008: Cube_004
-    400010: Cube_005
-    400012: //RootNode
-    400014: GateBack
-    400016: GateFront
-    2100000: None__blanks_back_png
-    2100002: unnamed
-    2300000: Cube
-    2300002: Cube_001
-    2300004: Cube_002
-    2300006: Cube_003
-    2300008: Cube_004
-    2300010: Cube_005
-    2300012: GateBack
-    2300014: GateFront
-    3300000: Cube
-    3300002: Cube_001
-    3300004: Cube_002
-    3300006: Cube_003
-    3300008: Cube_004
-    3300010: Cube_005
-    3300012: GateBack
-    3300014: GateFront
-    4300000: Cube_003
-    4300002: Cube
-    4300004: GateFront
-    4300006: GateBack
-    4300008: Cube_001
-    4300010: Cube_002
-    4300012: Cube_004
-    4300014: Cube_005
-    7400000: Default Take
-    9500000: //RootNode
+    100000: bush_01
+    100002: //RootNode
+    400000: bush_01
+    400002: //RootNode
+    2100000: bush_01Mat
+    2300000: bush_01
+    3300000: bush_01
+    4300000: bush_01
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -125,7 +87,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
